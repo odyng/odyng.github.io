@@ -1,17 +1,17 @@
 ---
-layout: page
+layout: about
 title: About
-permalink: /about/
+subheading: This is what I do
 ---
+I'm not a programmer, but I could read flow-chart or coding. I've just used GNU/Linux as a normal operating system
 
-A medium inspired Jekyll blog theme. The basic idea came from the Ghost theme 
-[Readium 2.0](http://www.svenread.com/readium-ghost-theme/). I use mediator on my own blog [The Base](blog.base68.com).
+### What I do
+- I worked on ports grate/msm8916 kernel to other distros 
+- I played Night Crows gameonline, and I'm GANDARD guild master
+- I've researching around like Neo, whom could find Morpheus out on matrix
+- I read some documents on internet, even postmarketOS, GNU/Linux mainline kernel documents
 
-You can **download** the theme here:
-[https://github.com/dirkfabisch/mediator](https://github.com/dirkfabisch/mediator) 
+### Contact
+- Matrix: [`#offtopic:postmarketos.org`] (ping @baonks81:matrix.org)
 
-You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at [jekyllrb.com](http://jekyllrb.com/)
-
-You can find the source code for the Jekyll new theme at: [github.com/jglovier/jekyll-new](https://github.com/jglovier/jekyll-new)
-
-You can find the source code for Jekyll at [github.com/jekyll/jekyll](https://github.com/jekyll/jekyll)
+[`#offtopic:postmarketos.org`]: https://matrix.to/#/#offtopic:postmarketos.org

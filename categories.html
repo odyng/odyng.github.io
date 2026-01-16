@@ -1,0 +1,40 @@
+---
+layout: default
+title: Categories
+subtitle: Categories
+---
+
+<div class="content">
+	<div class="container-fluid">
+		<div class="row g-0">
+			{% for category in site.categories %}
+				<div class="col-md-6 col-xl-4 border-bottom bg-light">
+					<div class="card-hos w-100 h-100">
+						<div class="image-responsive-widescreen">
+							{% assign foundImage = 0 %}
+                        	{% assign images = category.content | split:"<img " %}
+                       		{% for image in images %}
+                               {% if image contains 'src' %}
+                                    {% if foundImage == 0 %}
+                                         {% assign html = image | split:"/>" | first %}
+                                         <img class="card-img-top img-fluid rounded" {{ html }} loading="lazy" />
+                                         {% break %}
+                                    {% endif %}
+                               {% endif %}
+                          	{% endfor %}
+						</div>
+						<div class="card-body-ho">
+							<h1 class="card-title-hos">
+								<a class="text-my-color" href="{{ category.url }}">{{ category.name }}</a>
+							</h1>
+							<p class="card-info-hos">{{ category.content | truncatewords:8 | markdownify }}</p>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+<!-- Return to Top -->
+{% include top.html %}

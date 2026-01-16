@@ -1,6 +1,14 @@
-source 'https://rubygems.org'
+# frozen_string_literal: true
 
-# 'github-pages' includes 'jekyll' gem 
-gem 'github-pages'
-gem 'bourbon'
-gem 'jemoji'
+source "https://rubygems.org"
+
+# gem "rails"
+
+gem "jekyll", "~> 4.3"
+gem "jekyll-paginate"
+
+group :jekyll_plugins do
+  gem "jekyll-sitemap"
+  gem "jekyll-feed"
+  gem "jekyll-seo-tag"
+end

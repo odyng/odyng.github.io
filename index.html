@@ -1,95 +1,178 @@
 ---
 layout: default
+subtitle: My Book
+subheading: A Tech Pages
 ---
 
-<div class="teaserimage">
-    <div class="teaserimage-image" {% if site.cover %}style="background-image: url({{ site.cover | prepend: site.baseurl }})"{% endif %}>
-        Teaser Image
-    </div>
+<!-- Post preview -->
+
+<div class="content">
+   <div class="container-fluid">
+      <div class="row g-0">
+         {% for post in paginator.posts %}
+            {% case forloop.index %}
+                 {% when 1 %}
+                      {% if post == site.posts.last %}
+                           <div class="col-sm-12 col-md-12 col-lg-12 border-bottom bg-light">
+                      {% else %}
+                           <div class="col-sm-6 col-md-12 col-lg-12 border-bottom bg-light">
+                      {% endif %}
+                              <div class="card flex-md-row d-flex align-items-md-center">
+                                 <div class="w-100 h-100">
+                                    <a href="{{ post.url | relative_url }}">
+                                       <div class="image-responsive-first inner">
+                 {% when 2 %}
+                      {% if post == site.posts.last %}
+                           <div class="col-sm-6 col-md-12 col-lg-12 border-bottom bg-light">
+                      {% else %}
+                           <div class="col-sm-6 col-md-6 col-lg-4 border-bottom bg-light">
+                      {% endif %}
+                              <div class="card w-100 h-100">
+                                 <div>
+                                    <a href="{{ post.url | relative_url }}">
+                                       <div class="image-responsive-widescreen inner">
+                 {% when 3 %}
+                      {% if post == site.posts.last %}
+                           <div class="col-sm-12 col-md-6 col-lg-8 border-bottom bg-light">
+                      {% else %}
+                           <div class="col-sm-6 col-md-6 col-lg-4 border-bottom bg-light">
+                      {% endif %}
+                              <div class="card w-100 h-100">
+                                 <div>
+                                    <a href="{{ post.url | relative_url }}">
+                                       <div class="image-responsive-widescreen inner">
+                 {% when 5 %}
+                      {% if post == site.posts.last %}
+                           <div class="col-sm-12 col-md-6 col-lg-12 border-bottom bg-light">
+                      {% else %}
+                           <div class="col-sm-6 col-md-6 col-lg-6 border-bottom bg-light">
+                      {% endif %}
+                              <div class="card w-100 h-100"> <!-- md-5 shadow-sm -->
+                                 <div>
+                                    <a href="{{ post.url | relative_url }}">
+                                       <div class="image-responsive-widescreen inner">
+                 {% when 6 %}
+                      {% if post == site.posts.last %}
+                           <div class="col-sm-6 col-md-12 col-lg-6 border-bottom bg-light">
+                      {% else %}
+                           <div class="col-sm-6 col-md-12 col-lg-6 border-bottom bg-light">
+                      {% endif %}
+                              <div class="card w-100 h-100">
+                                 <div>
+                                    <a href="{{ post.url | relative_url }}">
+                                       <div class="image-responsive-widescreen inner">
+                 {% else %}
+                      {% if post == site.posts.last %}
+                           <div class="col-sm-6 col-md-12 col-lg-4 border-bottom bg-light">
+                      {% else %}
+                           <div class="col-sm-6 col-md-6 col-lg-4 border-bottom bg-light">
+                      {% endif %}
+                              <div class="card w-100 h-100">
+                                 <div>
+                                    <a href="{{ post.url | relative_url }}">
+                                       <div class="image-responsive-widescreen inner">
+            {% endcase %}
+                                          {% assign foundImage = 0 %}
+                                          {% assign images = post.content | split:"<img " %}
+                                          {% for image in images %}
+                                               {% if image contains 'src' %}
+                                                    {% if foundImage == 0 %}
+                                                         {% assign html = image | split:"/>" | first %}
+                                                         <img class="card-img-top img-fluid rounded" {{ html }} loading="lazy" />
+                                                         {% break %}
+                                                    {% endif %}
+                                               {% endif %}
+                                          {% endfor %}
+                                       </div>
+                                    </a>
+                                 </div>
+                                 <div class="card-body flex-lg-shrink-1">
+                                    <div class="card-title">
+                                       <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+                                       <div class="sub-cat text-truncate">
+                                          <span class="text-muted font-weight-lighter fst-italic">
+                                             <i class="far fa-calendar-alt"></i> {{ post.date | date: "%d %b %Y" }} - 
+                                             <i class="far fa-list-alt"></i> <a class="text-my-own-color" href="{{ site.baseurl }}{{ post.category }}">{{ post.category }}</a>
+                                         </span>
+                                       </div>
+                                    </div>
+                                    <div class="text-left my-2">
+                                       <p class="card-text">
+                                          {{ post.content | truncatewords:10 | strip_html }}
+                                          <a href="{{ post.url | relative_url  }}" class="text-my-own-color">more</a>
+                                       </p>
+                                    </div>
+                                 </div>
+                         </div>
+                      </div>            
+         {% endfor %}
+
+         <!-- Pagination loading more content -->
+         {% if paginator.total_pages > 1 %}
+              <div class="pagination">
+                 {% if paginator.previous_page %}
+                      {% if paginator.page == 2 %}
+                           <a href="/">&laquo; Prev</a>
+                      {% else %}
+                           <a href="{{ paginator.previous_page_path | relative_url }}">&laquo; Prev</a>
+                      {% endif %}    
+                 {% else %}
+                      <span>&laquo; Prev</span>
+                 {% endif %}
+
+                 {% if paginator.next_page %}
+                      <a class='next' href="{{ paginator.next_page_path | relative_url }}">Next &raquo;</a>
+                 {% else %}
+                      <span class='next'>Next &raquo;</span>
+                 {% endif %}
+             </div>
+         {% endif %}
+      </div>
+   </div>
 </div>
 
-<header class="blog-header">
-    {% if site.logo %}
-      <a class="blog-logo" href="{{site.url}}{{site.baseurl}}" style="background-image: url('{{ site.logo | prepend: site.baseurl }}')">{{ site.title }}</a>
-    {% endif %}
-    <h1 class="blog-title">{{ site.title }}</h1>
-    <h2 class="blog-description">{{ site.description }}</h2>
-    <div class="custom-links">
-      {% for social in site.social %}
-        {% if social.url %}
-            <a class="icon-{{ social.icon }}" href="{{ social.url }}" {% if social.desc %} title="{{ social.desc }}"{% endif %}">
-              <i class="fa fa-{{ social.icon }}"></i>
-            </a>
-            &nbsp;&nbsp;·&nbsp;&nbsp;
-        {% endif %}
-      {% endfor %}
-      <a href={{ "/about/" | prepend: site.baseurl }}>About</a>
-    </div>
-</header>
+<!-- Return to Top -->
+{% include top.html %}
 
+<script type="text/javascript">
+// content selector is used to extract the additional items 
+$('.content').jscroll({
+    contentSelector: ".content",
+    nextSelector: '.next'
+});
+</script>
 
-<main class="content" role="main">
-
-    {% if site.tags.featured %}
-    <h5 class="index-headline featured"><span>Featured</span></h5>
-
-    <div class="container featured">
-      {% for post in site.tags.featured %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-          <div class="article-item">
-            <header class="post-header">
-              <h2 class="post-title" itemprop="name"><a href="{{ post.url | prepend: site.baseurl }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-              <p>{{ post.content | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-  <!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
+<!-- <article>
+      <header>
+        <span class="text-muted font-weight-lighter fst-italic">{{ post.date | date: "%d %b %Y" }} - {{ post.category }}</span>
+        <h2>
+           <a href="{{ post.url | relative_url }}">
+             {{ post.title }}
+             <br /><span>&nbsp;</span>
+           <div class="image-wrapper">
+             {% assign foundImage = 0 %}
+             {% assign images = post.content | split:"<img " %}
+             {% for image in images %}
+               {% if image contains 'src' %}
+                 {% if foundImage == 0 %}
+                   {% assign html = image | split:"/>" | first %}
+                   <img class="image-responsive" {{ html }} />
+                   {% break %}
+                 {% endif %}
+               {% endif %}
+             {% endfor %}
             </div>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-
-    <h5 class="index-headline normal"><span>Regular</span></h5>
+           </a>
+        </h2>
+        <p>{{ post.content | truncatewords:25 | strip_html }}</p>
+      </header>
+      <a href="{{ post.url | relative_url  }}" class="text-my-own-color">READ MORE</a>
+    </article>
+-->
+    <!-- Dividers
+    {% if post == site.posts.last %}
+         <span>&nbsp;</span>
+    {% else %}
+         <hr class="my-4" />
     {% endif %}
-
-    <div class="cf frame">
-      {% for post in paginator.posts %}
-        <article class="post" itemscope itemtype="http://schema.org/BlogPosting" role="article">
-          <div class="article-item">
-            <header class="post-header">
-              <h2 class="post-title" itemprop="name"><a href="{{ post.url | prepend: site.baseurl }}" itemprop="url">{{ post.title }}</a></h2>
-            </header>
-            <section class="post-excerpt" itemprop="description">
-              <p>{{ post.excerpt | strip_html | truncatewords: 50 }}</p>
-            </section>
-            <div class="post-meta">
-              <time datetime="{{ post.date | date_to_long_string }}">{{ post.date | date_to_long_string }}</time>
-<!--            <span class="post-tags-set">on {{#foreach tags}}<span class="post-tag-{{slug}}">{{#if @first}}{{else}}, {{/if}}<a href="/tag/{{slug}}">{{name}}</a></span>{{/foreach}}</span>-->
-            </div>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-
-    <nav class="pagination" role="navigation">
-      {% if paginator.next_page %}
-        <a class="newer-posts" href={{ "/page" | prepend: site.baseurl | append: paginator.next_page }}>&larr; Older posts</a>
-      {% endif %}
-      <span class="page-number">Page {{ paginator.page }} of {{ paginator.total_pages }}</span>
-      {% if paginator.previous_page %}
-        {% if paginator.page == 2 %}
-          <a class="older-posts" href={{ "/" | prepend: site.baseurl }}>Newer posts &rarr;</a>
-        {% else %}
-          <a class="older-posts" href={{ "/page" | prepend: site.baseurl | append: paginator.previous_page }}>Newer posts &rarr;</a>
-        {% endif %}
-      {% endif %}
-    </nav>
-
-
-    <!-- {{!! After all the posts, we have the previous/next pagination links }}
-    {{pagination}} -->
-
-</main>
+-->
