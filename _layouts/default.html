@@ -1,34 +1,21 @@
 <!DOCTYPE html>
+
 <html>
 
-  <!-- Head -->
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
 
-    <!-- Pre-loader -->
-    {%- include loader.html -%}
-    
-    <!-- Navigation -->
-    {% include navigation.html %}
+  {% include navbar.html %}
 
-    <!-- Header -->
-    {% include header.html %}
-        
-    <!-- main id="main" role="main" class="container">    
-      <div class="container px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-          <div class="col-md-10 col-lg-8 col-xl-7" -->
+  {{ content }}
 
-            {{ content }}
+  {% include footer.html %}
 
-          <!-- /div>
-        </div>
-      </div>
-    </main -->
+  {% include scripts.html %}
 
-    <!-- Footer -->
-    {% include footer.html %}
-    
-  </body>
+  {% include google-analytics.html %}
+
+</body>
+
 </html>

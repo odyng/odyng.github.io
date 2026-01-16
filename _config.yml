@@ -1,32 +1,25 @@
-collections:
-  categories:
-    output: true
+title:              Clean Blog
+email:              your-email@example.com
+description:        A Blog Theme by Start Bootstrap
+author:             Start Bootstrap
+baseurl:            "/startbootstrap-clean-blog-jekyll"
+url:                "https://startbootstrap.github.io"
 
-defaults:
-  - scope:
-      path: ""
-      type: "categories"
-    values:
-      layout: "category"
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-  - scope:
-      path: ""
-    values:
-      layout: "default"
+# Social Profiles
+twitter_username:   SBootstrap
+github_username:    StartBootstrap
+facebook_username:  StartBootstrap
+instagram_username:  
+linkedin_username:
 
-plugins: 
-  - jekyll-paginate
+# Add your google-analytics ID here to activate google analytics
+google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
+
+# Build settings
+markdown:           kramdown
+paginate:           5
+paginate_path:      "/posts/page:num/"
+plugins:
   - jekyll-feed
-  - jekyll-sitemap
-  - jekyll-seo-tag
-
-paginate: 6
-paginate_path: "/page/:num"
-
-permalink: /:title/
-
-excerpt_separator: <!--more--> # global excerpt separator for the blog posts
+  - jekyll-paginate
+  - jekyll-sitemap ## Uncomment this line to silently generate a sitemaps.org compliant sitemap for your Jekyll site
